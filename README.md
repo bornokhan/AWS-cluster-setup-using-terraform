@@ -16,24 +16,26 @@ The infrastructure includes the following components:
 ## Architecture
 +-----------------+     +-----------------+     +-----------------+
 |   Internet      |-----|   Internet      |-----|     VPC         |
-|   Gateway (IGW) |     |   Gateway (NAT) |     |                 |
+|   Gateway (IGW) |     |   Gateway (NAT) |     |  1_VPC          |
+|   3_IGW         |     |  4_Nat-Gateway  |     |                 |
 +-----------------+     +-----------------+     |  +-----------+  |
-                                                |  | Public    |  |  <-- Subnet 1 (e.g., for NAT Gateway)
+                                                |  | Public    |  |  <-- 2_Subnet (for NAT Gateway)
                                                 |  | Subnet    |  |
                                                 |  +-----------+  |
                                                 |  +-----------+  |
-                                                |  | Private   |  |  <-- Subnet 2 (e.g., for EC2 Instance)
+                                                |  | Private   |  |  <-- 2_Subnet (for EC2 Instance)
                                                 |  | Subnet    |  |
                                                 |  +-----------+  |
                                                 |  +-----------+  |
-                                                |  |  EC2      |  |
+                                                |  |  EC2      |  |  <-- 9_Instance
                                                 |  | Instance  |  |
                                                 |  +-----------+  |
                                                 +-----------------+
                                                      |
-                                                     | Security Groups (SGs) applied to subnets/instances
-                                                     | Route Table (RT) associated with subnets
-                                                     | Key Pair associated with EC2 Instance
+                                                     | Security Groups (SGs) - 7_SGs applied to subnets/instances
+                                                     | Route Table (RT) - 5_RT associated with subnets; 6_subnet-association
+                                                     | Key Pair - 8_key-pair associated with EC2 Instance
+
 
 ## Prerequisites
 - **AWS Account:**.
