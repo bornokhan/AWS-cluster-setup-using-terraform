@@ -14,27 +14,8 @@ The infrastructure includes the following components:
 - **EC2 Instance:**  A virtual server in the AWS cloud.
 
 ## Architecture
-+-----------------+     +-----------------+     +-----------------+
-|   Internet      |-----|   Internet      |-----|     VPC         |
-|   Gateway (IGW) |     |   Gateway (NAT) |     |  1_VPC          |
-|   3_IGW         |     |  4_Nat-Gateway  |     |                 |
-+-----------------+     +-----------------+     |  +-----------+  |
-                                                |  | Public    |  |  <-- 2_Subnet (for NAT Gateway)
-                                                |  | Subnet    |  |
-                                                |  +-----------+  |
-                                                |  +-----------+  |
-                                                |  | Private   |  |  <-- 2_Subnet (for EC2 Instance)
-                                                |  | Subnet    |  |
-                                                |  +-----------+  |
-                                                |  +-----------+  |
-                                                |  |  EC2      |  |  <-- 9_Instance
-                                                |  | Instance  |  |
-                                                |  +-----------+  |
-                                                +-----------------+
-                                                     |
-                                                     | Security Groups (SGs) - 7_SGs applied to subnets/instances
-                                                     | Route Table (RT) - 5_RT associated with subnets; 6_subnet-association
-                                                     | Key Pair - 8_key-pair associated with EC2 Instance
+![image](https://github.com/user-attachments/assets/e86737bc-247b-48d9-93b0-0605ed17f78c)
+
 
 
 ## Prerequisites
